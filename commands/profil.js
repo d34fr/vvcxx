@@ -26,10 +26,10 @@ module.exports = {
           "`✅`〡Normal : `" + stats.normal + "`",
           "`❌`〡Bloqué : `" + stats.bloque + "`",
           "`💰`〡Validé : `" + stats.valide + "`\n",
-          "**⏳〡Avis en attente (" + stats.totalAttente + ") :**",
-          "`🔎`〡Appel : `" + stats.attenteAppel + "`",
+          "**⏳〡Avis en période d'attente (" + stats.totalEnAttente + ") :**",
           "`✅`〡Normal : `" + stats.attenteNormal + "`",
-          "`❌`〡Bloqué : `" + stats.attenteBloque + "`"
+          "`❌`〡Bloqué : `" + stats.attenteBloque + "`",
+          "`🔎`〡Appel : `" + stats.attenteAppel + "`"
         ].join("\n")
       );
 

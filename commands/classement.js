@@ -29,8 +29,8 @@ function pageEmbedFromRanking(ranking, page) {
           return [
             `**${medal}** <@${r.uid}>`,
             "`📊`〡**Total :** **`" + r.total + "`**",
-            "`✅`〡Normal : `" + (r.normal + r.attenteNormal) + "` (`" + r.normal + "` + `" + r.attenteNormal + "` en attente)",
-            "`❌`〡Bloqué : `" + (r.bloque + r.attenteBloque) + "` (`" + r.bloque + "` + `" + r.attenteBloque + "` en attente)",
+            "`✅`〡Normal : `" + (r.normal + r.attenteNormal) + "` (`" + r.normal + "` finalisés + `" + r.attenteNormal + "` en attente)",
+            "`❌`〡Bloqué : `" + (r.bloque + r.attenteBloque) + "` (`" + r.bloque + "` finalisés + `" + r.attenteBloque + "` en attente)",
             "`🔎`〡Appel : `" + r.attenteAppel + "` (en attente)",
             "`💰`〡Validé : `" + r.valide + "`"
           ].join("\n");

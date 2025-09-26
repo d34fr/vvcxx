@@ -20,7 +20,7 @@ function getUserStats(userId) {
     total: 0
   };
   
-  // Compter les avis en attente par statut réel
+  // Compter les avis en période d'attente par leur statut réel
   const userPending = pending.pending.filter(p => p.userId === userId);
   const pendingStats = {
     normal: 0,
@@ -40,13 +40,13 @@ function getUserStats(userId) {
     bloque: baseStats.bloque || 0,
     valide: baseStats.valide || 0,
     
-    // Avis en attente par statut
+    // Avis en période d'attente (7j) par statut
     attenteNormal: pendingStats.normal,
     attenteBloque: pendingStats.bloque,
     attenteAppel: pendingStats.appel,
     
     // Totaux
-    totalAttente: userPending.length,
+    totalEnAttente: userPending.length,
     totalFinalise: (baseStats.normal || 0) + (baseStats.bloque || 0) + (baseStats.valide || 0),
     total: (baseStats.normal || 0) + (baseStats.bloque || 0) + (baseStats.valide || 0) + userPending.length
   };
