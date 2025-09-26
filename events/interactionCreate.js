@@ -8,26 +8,10 @@ const { readJSON, writeJSON } = require("../utils/jsonManager");
 const { baseEmbed } = require("../utils/embeds");
 const config = require("../config.json");
 const { paginationComponents } = require("../utils/pagination");
+const { computeFullRanking } = require("../utils/dataManager");
 
 function isSYS(userId) {
   return Array.isArray(config.sys) && config.sys.includes(userId);
-}
-
-// Classement
-function computeRanking(avis) {
-  const arr = [];
-  for (const [uid, data] of Object.entries(avis.users || {})) {
-    arr.push({
-      uid,
-      total: data.total || 0,
-      normal: data.normal || 0,
-      bloque: data.bloque || 0,
-      attente: data.attente || 0,
-      valide: data.valide || 0,
-    });
-  }
-  arr.sort((a, b) => b.total - a.total);
-  return arr;
 }
 
 function pageEmbedFromRanking(ranking, page) {
@@ -35,8 +19,8 @@ function pageEmbedFromRanking(ranking, page) {
   const slice = ranking.slice(start, start + 10);
 
   const emb = baseEmbed()
-    .setColor("Blue")
-    .setTitle("🏆 Classement des membres")
+    .setColor(0xFFD700)
+    .setTitle("🏆〡Classement des membres")
     .setFooter({
       text: `Page ${page + 1} / ${Math.max(1, Math.ceil(ranking.length / 10))}`,
     });
@@ -48,16 +32,21 @@ function pageEmbedFromRanking(ranking, page) {
       slice
         .map((r, idx) => {
           const rank = start + idx + 1;
+          let medal = `#${rank}`;
+          if (rank === 1) medal = "🥇";
+          else if (rank === 2) medal = "🥈";
+          else if (rank === 3) medal = "🥉";
+
           return [
-            "`#️⃣`〡**#" + rank + "** — <@" + r.uid + ">",
-            "`📊`〡**Total : `" + r.total + "`**",
-            "`✅`〡Normal : `" + r.normal + "`",
-            "`❌`〡Bloqué : `" + r.bloque + "`",
-            "`⌛`〡En attente : `" + r.attente + "`",
-            "`💰`〡Validé : `" + r.valide + "`",
+            `**${medal}** <@${r.uid}>`,
+            "`📊`〡**Total :** **`" + r.total + "`**",
+            "`✅`〡Normal : `" + (r.normal + r.attenteNormal) + "` (`" + r.normal + "` + `" + r.attenteNormal + "` en attente)",
+            "`❌`〡Bloqué : `" + (r.bloque + r.attenteBloque) + "` (`" + r.bloque + "` + `" + r.attenteBloque + "` en attente)",
+            "`🔎`〡Appel : `" + r.attenteAppel + "` (en attente)",
+            "`💰`〡Validé : `" + r.valide + "`"
           ].join("\n");
         })
-        .join("\n\n")
+        .join("\n\n─────────────────────\n\n")
     );
   }
   return emb;
@@ -205,9 +194,7 @@ module.exports = {
           const action = parts[1];
           let page = parseInt(parts[2] || "0", 10) || 0;
 
-          const aPath = path.join(__dirname, "..", "data", "avis.json");
-          const avis = readJSON(aPath, { users: {}, totalAvis: 0 });
-          const ranking = computeRanking(avis);
+          const ranking = computeFullRanking();
           const totalPages = Math.max(1, Math.ceil(ranking.length / 10));
 
           if (action === "first") page = 0;

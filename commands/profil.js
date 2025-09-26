@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const { baseEmbed } = require("../utils/embeds");
-const path = require("path");
-const { readJSON } = require("../utils/jsonManager");
+const { getUserStats } = require("../utils/dataManager");
 
 module.exports = {
   sysOnly: false,
@@ -13,28 +12,24 @@ module.exports = {
     ),
   async execute(interaction) {
     const user = interaction.options.getUser("user") || interaction.user;
-    const aPath = path.join(__dirname, "..", "data", "avis.json");
-    const avis = readJSON(aPath, { users: {}, totalAvis: 0 });
-    const u = avis.users[user.id] || {
-      attente: 0,
-      bloque: 0,
-      normal: 0,
-      valide: 0,
-      total: 0
-    };
+    const stats = getUserStats(user.id);
 
     const emb = baseEmbed()
-      .setColor("Blue")
-      .setTitle("🪪 Profil d'avis")
+      .setColor(0x5865F2)
+      .setTitle("🪪〡Profil d'avis")
       .setThumbnail(user.displayAvatarURL({ dynamic: true }))
       .setDescription(
         [
-          "`👤`〡Utilisateur : " + `<@${user.id}>\n`,
-          "`📊`〡**Total d'avis :** **`" + u.total + "`**",
-          "`⌛`〡En attente : `" + u.attente + "`",
-          "`✅`〡Normal : `" + u.normal + "`",
-          "`❌`〡Bloqué : `" + u.bloque + "`",
-          "`💰`〡Validé : `" + u.valide + "`"
+          "`👤`〡**Utilisateur :** <@" + user.id + ">\n",
+          "`📊`〡**Total d'avis :** **`" + stats.total + "`**\n",
+          "**📋〡Avis finalisés :**",
+          "`✅`〡Normal : `" + stats.normal + "`",
+          "`❌`〡Bloqué : `" + stats.bloque + "`",
+          "`💰`〡Validé : `" + stats.valide + "`\n",
+          "**⏳〡Avis en attente (" + stats.totalAttente + ") :**",
+          "`🔎`〡Appel : `" + stats.attenteAppel + "`",
+          "`✅`〡Normal : `" + stats.attenteNormal + "`",
+          "`❌`〡Bloqué : `" + stats.attenteBloque + "`"
         ].join("\n")
       );
 

@@ -59,7 +59,7 @@ module.exports = {
     u.attente += 1;
     u.total = u.attente + u.bloque + u.normal + u.valide;
     avis.users[member.id] = u;
-    avis.totalAvis = (avis.totalAvis || 0) + 1;
+    avis.totalAvis = Math.max(0, (avis.totalAvis || 0) + 1);
     writeJSON(avisPath, avis);
 
     // Embed dans le salon "Avis en attente"
@@ -69,12 +69,12 @@ module.exports = {
       if (chan) {
         const embAtt = baseEmbed()
           .setColor("Yellow")
-          .setTitle("⌛〡Nouvel avis en attente")
+          .setTitle("⌛〡Nouvel avis en attente (" + formatStatut(statut) + ")")
           .setDescription([
             "`👤`〡Utilisateur : " + `<@${member.id}>`,
             "`#️⃣`〡Numéro : `" + numero + "`",
             "`📌`〡Statut : " + formatStatut(statut),
-            "`⏳`〡Avis vérifié le : " + `<t:${Math.floor(endsAt/1000)}:F>`
+            "`⏳`〡Vérification le : " + `<t:${Math.floor(endsAt/1000)}:F>`
           ].join("\n"));
         await chan.send({ embeds: [embAtt] }).catch(() => {});
       }
@@ -88,12 +88,12 @@ module.exports = {
     // Embed de réponse dans le salon courant
     const emb = baseEmbed()
       .setColor("Yellow")
-      .setTitle("📝〡Avis ajouté")
+      .setTitle("📝〡Avis ajouté (" + formatStatut(statut) + ")")
       .setDescription([
         "`👤`〡Utilisateur : " + `<@${member.id}>`,
         "`#️⃣`〡Numéro : `" + numero + "`",
         "`📌`〡Statut : " + formatStatut(statut),
-        "`⏳`〡Avis vérifié le : " + `<t:${Math.floor(endsAt/1000)}:F>`
+        "`⏳`〡Vérification le : " + `<t:${Math.floor(endsAt/1000)}:F>`
       ].join("\n"));
 
     return interaction.reply({ embeds: [emb], components: [row] });
