@@ -56,7 +56,7 @@ module.exports = async function updateClassement(client) {
           ].join("\n");
         });
 
-        emb.setDescription(lines.join("\n\n─────────────────────\n\n"));
+        emb.setDescription(lines.join("\n─────────────────────\n"));
       }
 
       await msg.edit({ embeds: [emb] }).catch(() => {});
