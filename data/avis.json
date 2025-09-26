@@ -1,0 +1,117 @@
+{
+  "users": {
+    "855843663691382794": {
+      "attente": 2,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 2
+    },
+    "1413197121808764979": {
+      "attente": 2,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 2
+    },
+    "1056379782088105994": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    },
+    "1136009998254755960": {
+      "attente": 5,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 5
+    },
+    "934746787892310056": {
+      "attente": 3,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 3
+    },
+    "462903606652436481": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    },
+    "1378115297244090598": {
+      "attente": 3,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 3
+    },
+    "1053708405849735208": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    },
+    "1231490821648547840": {
+      "attente": 3,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 3
+    },
+    "1370458108647964954": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    },
+    "540178818531328012": {
+      "attente": 2,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 2
+    },
+    "1138557056211763200": {
+      "attente": 5,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 5
+    },
+    "1237104576633507931": {
+      "attente": 2,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 2
+    },
+    "1022994912045703231": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    },
+    "1395806526773399703": {
+      "attente": 2,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 2
+    },
+    "922541708464504842": {
+      "attente": 1,
+      "bloque": 0,
+      "normal": 0,
+      "valide": 0,
+      "total": 1
+    }
+  },
+  "totalAvis": 35
+}

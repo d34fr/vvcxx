@@ -1,0 +1,23 @@
+{
+  "token": "",
+  "clientId": "1419832148520734862",
+  "prefix": ".",
+  "statut": {
+    "texte": "🌾 Après la pluie viens le beau temps.. (askip c'est uhq ça)",
+    "type": 4
+  },
+  "salons": {
+    "avisAttente": "1420016211688951920",
+    "avisVerif": "1420016244072906802",
+    "compteur": "1419802009858605146",
+    "classement": "1420014992731799657"
+  },
+  "footer": {
+    "texte": "Trop UHQ pour toi 🌾〡Developpé par d34fr",
+    "icone": "https://media.discordapp.net/attachments/1419332547426385980/1419333126689394859/f975f8015db32f1533d0cfcf925d04a8.webp?ex=68d35abb&is=68d2093b&hm=9aa81ae2ac8f4bab280ac61b274e11445c2aaf5a262d8a8684442941f04bf1fc&=&format=webp&width=450&height=450"
+  },
+  "sys": [
+    "768522057218523216",
+    "1132666342043033702"
+  ]
+}
